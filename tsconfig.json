@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "esnext",                                // Especifica el objetivo de la versión ECMAScript de salida.
+    "module": "commonjs",                              // Especifica el módulo de generación de código.
+    "lib": ["dom", "dom.iterable", "esnext"],          // Especifica las librerías que serán incluidas en la compilación.
+    "allowJs": true,                                   // Permite la compilación de archivos JavaScript.
+    "skipLibCheck": true,                              // Omite la verificación de tipos en las declaraciones de archivos .d.ts.
+    "esModuleInterop": true,                           // Habilita la interoperabilidad de módulo ES6 por defecto para importar módulos CommonJS.
+    "allowSyntheticDefaultImports": true,              // Permite importaciones predeterminadas de módulos con exportaciones no predeterminadas.
+    "strict": true,                                    // Habilita todas las opciones estrictas de tipo.
+    "forceConsistentCasingInFileNames": true,          // Deshabilita la navegación y compilación si hay archivos con nombres de caso inconsistente.
+    "moduleResolution": "node",                        // Resuelve la estrategia de resolución de módulos.
+    "resolveJsonModule": true,                         // Incluye módulos JSON.
+    "isolatedModules": true,                           // Asegura que cada archivo se pueda transpilar de forma independiente.
+    "noEmit": true,                                    // No emite archivos de salida.
+
+    /* Opciones de Directivas de Ruta */
+    "baseUrl": "./",                                   // Directorio base para resolver nombres de archivos no relativos.
+    "paths": {                                         // Una serie de entradas que reasignan las importaciones a ubicaciones de búsqueda.
+      "*": ["types/*"]
+    },
+
+    /* Opciones Avanzadas */
+    "strictNullChecks": true,                          // Activa verificaciones estrictas de nulidad.
+    "noImplicitAny": true,                             // Genera error en expresiones y declaraciones con un tipo implícito 'any'.
+    "strictFunctionTypes": true,                       // Asegura que los tipos de parámetros de función sean correctos.
+    "strictBindCallApply": true,                       // Asegura que 'bind', 'call' y 'apply' sean usados correctamente.
+    "strictPropertyInitialization": true,              // Asegura que las propiedades de las clases se inicialicen correctamente.
+    "noImplicitThis": true,                            // Genera error en 'this' con un tipo implícito 'any'.
+    "alwaysStrict": true,                              // Analiza todos los códigos en modo estricto y emite "use strict" en los archivos.
+    
+    /* Configuraciones de Depuración */
+    "sourceMap": true                                  // Genera archivos .map correspondientes a los archivos .js resultantes.
+  },
+  "include": [
+    "src/**/*"                                         // Incluye todos los archivos TypeScript del directorio 'src' y sus subdirectorios.
+  ],
+  "exclude": [
+    "node_modules",                                   // Excluye el directorio 'node_modules'.
+    "**/*.spec.ts"                                    // Excluye archivos de prueba.
+  ]
+}
