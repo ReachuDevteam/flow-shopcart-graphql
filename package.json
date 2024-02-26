@@ -9,7 +9,9 @@
     "start": "ts-node src/demo.ts",
     "lint": "eslint 'src/**/*.{js,ts}' --quiet",
     "lint:fix": "eslint 'src/**/*.{js,ts}' --quiet --fix",
-    "format": "prettier --write 'src/**/*.{js,ts,json,md}'"
+    "format": "prettier --write 'src/**/*.{js,ts,json,md}'",
+    "demo-discount": "cross-env DEMO_ENV='DISCOUNT' nodemon",
+    "demo-shopcart": "cross-env DEMO_ENV='SHOPCART' nodemon"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
     "@types/node": "^20.11.20",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
