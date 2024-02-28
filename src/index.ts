@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { discountDemo, shopCartDemo } from './demos';
 
 async function runDemo() {
