@@ -118,12 +118,14 @@ const shopCartDemo = async () => {
 
     /*#########################  PAYMENT FOR KLARNA ######################### */
 
-    const klarnaPayment = await initPaymentKlarna({
-      checkoutId: checkout.id,
-      countryCode: 'NO',
-      href: 'http://localhost:3000',
-      email: 'devmiguelopz@gmail.com',
-    });
+    try {
+      const klarnaPayment = await initPaymentKlarna({
+        checkoutId: checkout.id,
+        countryCode: 'NO',
+        href: 'https://www.example.com/confirmation.html',
+        email: 'devmiguelopz@gmail.com',
+      });
+    } catch {}
   }
 
   if (process.env.DEMO_PAYMENT === 'STRIPE') {
