@@ -11,7 +11,9 @@
     "lint:fix": "eslint 'src/**/*.{js,ts}' --quiet --fix",
     "format": "prettier --write 'src/**/*.{js,ts,json,md}'",
     "demo-discount": "cross-env DEMO_ENV='DISCOUNT' nodemon",
-    "demo-shopcart": "cross-env DEMO_ENV='SHOPCART' nodemon"
+    "demo-shopcart": "cross-env DEMO_ENV='SHOPCART' nodemon",
+    "demo-shopcart-klarna": "cross-env DEMO_ENV='SHOPCART' DEMO_PAYMENT='KLARNA' nodemon",
+    "demo-shopcart-stripe": "cross-env DEMO_ENV='SHOPCART' DEMO_PAYMENT='STRIPE' nodemon"
   },
   "keywords": [],
   "author": "",

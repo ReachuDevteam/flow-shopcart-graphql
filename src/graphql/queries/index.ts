@@ -256,4 +256,19 @@ export async function executeChannelGetProductQuery(variables: {
 
   return data.channelGetProduct;
 }
-1;
+
+export async function executeCheckoutGetAvailablePaymentMethodsQuery() {
+  const CHECKOUT_GET_AVAILABLE_PAYMENT_METHODS_QUERY = gql`
+    query CheckoutGetAvailablePaymentMethods {
+      checkoutGetAvailablePaymentMethods {
+        name
+      }
+    }
+  `;
+
+  const { data } = await client.query({
+    query: CHECKOUT_GET_AVAILABLE_PAYMENT_METHODS_QUERY,
+  });
+
+  return data.checkoutGetAvailablePaymentMethods;
+}
