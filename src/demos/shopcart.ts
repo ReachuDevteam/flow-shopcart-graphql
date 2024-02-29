@@ -26,9 +26,12 @@ const shopCartDemo = async () => {
   const channelProducts = await getChannelProducts('NOK', 'medium');
 
   /*######################### RETURN PRODUCT [CHANNEL] ######################### */
-
+  const PRODUCT_ID_FOR_TESTING = 67758;
+  const _channelProduct = channelProducts.find(
+    (product: Record<string, any>) => +product.id === PRODUCT_ID_FOR_TESTING
+  );
   const channelProduct = await getChannelProduct(
-    +channelProducts[0].id,
+    +_channelProduct.id,
     'NOK',
     'medium'
   );
@@ -48,22 +51,17 @@ const shopCartDemo = async () => {
   const itemToCart = await addItemToShopCart(getCart.cart_id, channelProduct);
 
   /*######################### UPDATE ITEM SHOP CART [ADD SHIPPING COUNTRY] ######################### */
-  /**
-   *  
-   * SELECT sc.id
-    FROM product_shipping ps
-    JOIN shipping s ON ps.shipping_id = s.id
-    JOIN shipping_country sc ON s.id = sc.shipping_id
-    WHERE ps.product_id = 67723
-    AND ps.deleted_at IS NULL
-    AND sc.country = 'NO';
-   *
-    result : 7145d404-0c3b-4de3-8184-430fbedc98a1
-   */
+
+  const { id: shippingId } =
+    channelProduct.productShipping[0].shippingCountry.find(
+      (sc: Record<string, any>) => sc.country === 'NO'
+    );
+  console.info('shippingId', shippingId);
+
   await updateItemInShopCart({
     cartId: itemToCart.cart_id,
     cartItemId: itemToCart.line_items[0].id,
-    shippingId: '7145d404-0c3b-4de3-8184-430fbedc98a1',
+    shippingId,
   });
 
   /*######################### UPDATE ITEM SHOP CART [UPDATE qty] ######################### */
