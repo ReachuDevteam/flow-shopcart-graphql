@@ -60,10 +60,11 @@ export async function executeGetCartQuery(variables: { cartId: string }) {
 
 export async function executeChannelGetProductsQuery(variables?: {
   currency?: string;
+  imageSize: 'large' | 'medium' | 'thumbnail' | 'full';
 }) {
   const CHANNEL_GET_PRODUCTS_QUERY = gql`
-    query ChannelGetProducts($currency: String) {
-      channelGetProducts(currency: $currency) {
+    query ChannelGetProducts($currency: String, $imageSize: ImageSize) {
+      channelGetProducts(currency: $currency, imageSize: $imageSize) {
         id
         title
         description
@@ -160,10 +161,19 @@ export async function executeChannelGetProductsQuery(variables?: {
 export async function executeChannelGetProductQuery(variables: {
   productId: number;
   currency?: string;
+  imageSize?: 'large' | 'medium' | 'thumbnail' | 'full';
 }) {
   const CHANNEL_GET_PRODUCT_QUERY = gql`
-    query ChannelGetProduct($productId: Int, $currency: String) {
-      channelGetProduct(productId: $productId, currency: $currency) {
+    query ChannelGetProduct(
+      $productId: Int
+      $currency: String
+      $imageSize: ImageSize
+    ) {
+      channelGetProduct(
+        productId: $productId
+        currency: $currency
+        imageSize: $imageSize
+      ) {
         id
         title
         description

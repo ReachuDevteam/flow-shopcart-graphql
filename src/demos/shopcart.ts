@@ -23,11 +23,15 @@ const shopCartDemo = async () => {
   );
 
   /*######################### RETURN PRODUCTS  [CHANNEL] ######################### */
-  const channelProducts = await getChannelProducts('NOK');
+  const channelProducts = await getChannelProducts('NOK', 'medium');
 
   /*######################### RETURN PRODUCT [CHANNEL] ######################### */
 
-  const channelProduct = await getChannelProduct(+channelProducts[0].id, 'NOK');
+  const channelProduct = await getChannelProduct(
+    +channelProducts[0].id,
+    'NOK',
+    'medium'
+  );
 
   /*######################### CREATE SHOP CART ######################### */
   const createCart = await createShopCart();
@@ -217,10 +221,14 @@ const getShopCart = async (cartId: string) => {
   }
 };
 
-const getChannelProducts = async (currency?: string) => {
+const getChannelProducts = async (
+  currency?: string,
+  imageSize: 'large' | 'medium' | 'thumbnail' | 'full' = 'large'
+) => {
   try {
     const result = await executeChannelGetProductsQuery({
       currency,
+      imageSize,
     });
     console.log('Result of getChannelProducts:', result);
     return result;
@@ -230,11 +238,16 @@ const getChannelProducts = async (currency?: string) => {
   }
 };
 
-const getChannelProduct = async (productId: number, currency?: string) => {
+const getChannelProduct = async (
+  productId: number,
+  currency?: string,
+  imageSize: 'large' | 'medium' | 'thumbnail' | 'full' = 'large'
+) => {
   try {
     const result = await executeChannelGetProductQuery({
       productId,
       currency,
+      imageSize,
     });
     console.log('Result of getChannelProduct:', result);
     return result;
