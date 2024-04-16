@@ -26,12 +26,12 @@ const shopCartDemo = async () => {
   const channelProducts = await getChannelProducts('NOK', 'medium');
 
   /*######################### RETURN PRODUCT [CHANNEL] ######################### */
-  const PRODUCT_ID_FOR_TESTING = 67758;
+  const PRODUCT_ID_FOR_TESTING = 68174;
   const _channelProduct = channelProducts.find(
     (product: Record<string, any>) => +product.id === PRODUCT_ID_FOR_TESTING
   );
   const channelProduct = await getChannelProduct(
-    +_channelProduct.id,
+    _channelProduct.id,
     'NOK',
     'medium'
   );
@@ -53,7 +53,7 @@ const shopCartDemo = async () => {
   /*######################### UPDATE ITEM SHOP CART [ADD SHIPPING COUNTRY] ######################### */
 
   const { id: shippingId } =
-    channelProduct.productShipping[0].shippingCountry.find(
+    channelProduct.product_shipping[0].shipping_country.find(
       (sc: Record<string, any>) => sc.country === 'NO'
     );
   console.info('shippingId', shippingId);
@@ -272,23 +272,24 @@ const updateShopCart = async (cartId: string, shippingCountry: string) => {
 const addItemToShopCart = async (
   cartId: string,
   product: {
-    id: string;
+    id: number;
     price: {
-      amount: string;
-      currencyCode: string;
-      baseAmount: string;
-      compareAt: string;
+      amount: number;
+      currency_code: string;
+      compare_at: number;
+      tax: number;
+      discount: number;
     };
   }
 ) => {
   const lineItems = [
     {
       quantity: 2,
-      product_id: +product.id,
+      product_id: product.id,
       price_data: {
-        currency: product.price.currencyCode,
+        currency: product.price.currency_code,
         tax: 0,
-        unit_price: +product.price.amount,
+        unit_price: product.price.amount,
       },
     },
   ];

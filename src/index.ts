@@ -6,9 +6,6 @@ async function runDemo() {
     case 'SHOPCART':
       await shopCartDemo();
       break;
-    case 'DISCOUNT':
-      await discountDemo();
-      break;
     default:
       console.log('No environment value has been specified.');
       break;

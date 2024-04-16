@@ -4,48 +4,53 @@ import client from '../client';
 export async function executeGetCartQuery(variables: { cartId: string }) {
   const GET_CART_QUERY = gql`
     query GetCart($cartId: String!) {
-      getCart(cartId: $cartId) {
-        cart_id
-        customer_session_id
-        shippingCountry
-        line_items {
-          id
-          supplier
-          product_image {
+      Cart {
+        GetCart(cart_id: $cartId) {
+          cart_id
+          customer_session_id
+          shipping_country
+          line_items {
             id
-            url
-            width
-            height
-          }
-          product_id
-          product_title
-          variant_id
-          variant_title
-          variant {
-            option
-            value
-          }
-          quantity
-          price {
-            amount
-            currencyCode
-            tax
-            discount
-            compareAt
-          }
-          shipping {
-            id
-            name
-            description
+            supplier
+            image {
+              id
+              url
+              width
+              height
+            }
+            sku
+            barcode
+            brand
+            product_id
+            title
+            variant_id
+            variant_title
+            variant {
+              option
+              value
+            }
+            quantity
             price {
               amount
-              currencyCode
+              currency_code
+              tax
+              discount
+              compare_at
+            }
+            shipping {
+              id
+              name
+              description
+              price {
+                amount
+                currency_code
+              }
             }
           }
+          total_amount
+          currency
+          available_shipping_countries
         }
-        total_amount
-        currency
-        available_shipping_countries
       }
     }
   `;
@@ -55,7 +60,7 @@ export async function executeGetCartQuery(variables: { cartId: string }) {
     variables,
   });
 
-  return data.getCart;
+  return data.Cart.GetCart;
 }
 
 export async function executeChannelGetProductsQuery(variables?: {
@@ -63,87 +68,79 @@ export async function executeChannelGetProductsQuery(variables?: {
   imageSize: 'large' | 'medium' | 'thumbnail' | 'full';
 }) {
   const CHANNEL_GET_PRODUCTS_QUERY = gql`
-    query ChannelGetProducts($currency: String, $imageSize: ImageSize) {
-      channelGetProducts(currency: $currency, imageSize: $imageSize) {
-        id
-        title
-        description
-        tags
-        sku
-        quantity
-        price {
-          amount
-          currencyCode
-          baseAmount
-          compareAt
-        }
-        variants {
+    query GetProducts($currency: String, $imageSize: ImageSize) {
+      Channel {
+        GetProducts(currency: $currency, image_size: $imageSize) {
           id
-          barcode
-          quantity
-          sku
           title
-        }
-        barcode
-        options {
-          id
-          name
-          order
-          values
-        }
-        categories {
-          id
-          name
-        }
-        subcategories {
-          id
-          name
-        }
-        images {
-          id
-          url
-          width
-          height
-          order
-        }
-        productShipping {
-          id
-          name
           description
-          customPriceEnabled
-          default
-          shippingCountry {
-            id
+          tags
+          sku
+          quantity
+          price {
             amount
-            country
-            currencyCode
-            originalData {
+            currency_code
+            compare_at
+          }
+          variants {
+            id
+            barcode
+            quantity
+            sku
+            title
+          }
+          barcode
+          options {
+            id
+            name
+            order
+            values
+          }
+          categories {
+            id
+            name
+          }
+          images {
+            id
+            url
+            width
+            height
+            order
+          }
+          product_shipping {
+            id
+            name
+            description
+            custom_price_enabled
+            default
+            shipping_country {
+              id
               amount
-              currencyCode
-              baseAmount
+              country
+              currency_code
             }
           }
-        }
-        supplier
-        importedProduct
-        referralFee
-        optionsEnabled
-        digital
-        origin
-        return {
-          return_right
-          return_label
-          return_cost
-          supplier_policy
-          return_address {
-            sameAsBusiness
-            sameAsWarehouse
-            country
-            timezone
-            address
-            address2
-            postCode
-            returnCity
+          supplier
+          imported_product
+          referral_fee
+          options_enabled
+          digital
+          origin
+          return {
+            return_right
+            return_label
+            return_cost
+            supplier_policy
+            return_address {
+              same_as_business
+              same_as_warehouse
+              country
+              timezone
+              address
+              address_2
+              post_code
+              return_city
+            }
           }
         }
       }
@@ -155,104 +152,102 @@ export async function executeChannelGetProductsQuery(variables?: {
     variables,
   });
 
-  return data.channelGetProducts;
+  return data.Channel.GetProducts;
 }
 
 export async function executeChannelGetProductQuery(variables: {
   productId: number;
   currency?: string;
+  sku?: string;
+  barcode?: string;
   imageSize?: 'large' | 'medium' | 'thumbnail' | 'full';
 }) {
   const CHANNEL_GET_PRODUCT_QUERY = gql`
-    query ChannelGetProduct(
-      $productId: Int
+    query GetProduct(
       $currency: String
       $imageSize: ImageSize
+      $sku: String
+      $barcode: String
+      $productId: Int
     ) {
-      channelGetProduct(
-        productId: $productId
-        currency: $currency
-        imageSize: $imageSize
-      ) {
-        id
-        title
-        description
-        tags
-        sku
-        quantity
-        price {
-          amount
-          currencyCode
-          baseAmount
-          compareAt
-        }
-        variants {
+      Channel {
+        GetProduct(
+          currency: $currency
+          image_size: $imageSize
+          sku: $sku
+          barcode: $barcode
+          product_id: $productId
+        ) {
           id
-          barcode
-          quantity
-          sku
           title
-        }
-        barcode
-        options {
-          id
-          name
-          order
-          values
-        }
-        categories {
-          id
-          name
-        }
-        subcategories {
-          id
-          name
-        }
-        images {
-          id
-          url
-          width
-          height
-          order
-        }
-        productShipping {
-          id
-          name
           description
-          customPriceEnabled
-          default
-          shippingCountry {
-            id
+          tags
+          sku
+          quantity
+          price {
             amount
-            country
-            currencyCode
-            originalData {
+            currency_code
+            compare_at
+          }
+          variants {
+            id
+            barcode
+            quantity
+            sku
+            title
+          }
+          barcode
+          options {
+            id
+            name
+            order
+            values
+          }
+          categories {
+            id
+            name
+          }
+          images {
+            id
+            url
+            width
+            height
+            order
+          }
+          product_shipping {
+            id
+            name
+            description
+            custom_price_enabled
+            default
+            shipping_country {
+              id
               amount
-              currencyCode
-              baseAmount
+              country
+              currency_code
             }
           }
-        }
-        supplier
-        importedProduct
-        referralFee
-        optionsEnabled
-        digital
-        origin
-        return {
-          return_right
-          return_label
-          return_cost
-          supplier_policy
-          return_address {
-            sameAsBusiness
-            sameAsWarehouse
-            country
-            timezone
-            address
-            address2
-            postCode
-            returnCity
+          supplier
+          imported_product
+          referral_fee
+          options_enabled
+          digital
+          origin
+          return {
+            return_right
+            return_label
+            return_cost
+            supplier_policy
+            return_address {
+              same_as_business
+              same_as_warehouse
+              country
+              timezone
+              address
+              address_2
+              post_code
+              return_city
+            }
           }
         }
       }
@@ -264,14 +259,16 @@ export async function executeChannelGetProductQuery(variables: {
     variables,
   });
 
-  return data.channelGetProduct;
+  return data.Channel.GetProduct;
 }
 
 export async function executeCheckoutGetAvailablePaymentMethodsQuery() {
   const CHECKOUT_GET_AVAILABLE_PAYMENT_METHODS_QUERY = gql`
-    query CheckoutGetAvailablePaymentMethods {
-      checkoutGetAvailablePaymentMethods {
-        name
+    query GetAvailablePaymentMethods {
+      Payment {
+        GetAvailablePaymentMethods {
+          name
+        }
       }
     }
   `;
@@ -280,5 +277,5 @@ export async function executeCheckoutGetAvailablePaymentMethodsQuery() {
     query: CHECKOUT_GET_AVAILABLE_PAYMENT_METHODS_QUERY,
   });
 
-  return data.checkoutGetAvailablePaymentMethods;
+  return data.Payment.GetAvailablePaymentMethods;
 }
