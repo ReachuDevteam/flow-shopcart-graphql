@@ -83,6 +83,8 @@ const shopCartDemo = async () => {
       checkoutId: checkout.id,
       email: 'devmiguelopz@gmail.com',
       paymentMethod: 'klarna',
+      buyerAcceptsTermsConditions: true,
+      buyerAcceptsPurchaseConditions: true,
       billingAddress: {
         address1: 'Karl Johans gate 47',
         address2: '',
@@ -139,6 +141,8 @@ const shopCartDemo = async () => {
       paymentMethod: 'stripe',
       successUrl: 'http://localhost:3000/success',
       cancelUrl: 'http://localhost:3000/cancel',
+      buyerAcceptsTermsConditions: true,
+      buyerAcceptsPurchaseConditions: true,
       billingAddress: {
         address1: 'Karl Johans gate 47',
         address2: '',
@@ -367,6 +371,8 @@ async function consumeUpdateCheckoutMutation(variables: {
   shippingAddress?: AddressInput | null;
   billingAddress?: AddressInput | null;
   status?: string | null;
+  buyerAcceptsTermsConditions: boolean;
+  buyerAcceptsPurchaseConditions: boolean;
 }) {
   try {
     const result = await executeUpdateCheckoutMutation(variables);
