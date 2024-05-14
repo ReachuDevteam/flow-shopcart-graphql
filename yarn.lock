@@ -134,10 +134,10 @@
   resolved "https://registry.npmjs.org/@pkgr/core/-/core-0.1.1.tgz"
   integrity sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==
 
-"@reachu/sdk@^1.0.71-prerelease.16":
-  version "1.0.71-prerelease.16"
-  resolved "https://registry.npmjs.org/@reachu/sdk/-/sdk-1.0.71-prerelease.16.tgz"
-  integrity sha512-KvdTu7SgrxBy/8VcDZ4ZMRvIvf2clihW0VRIbwN9GVRKQdq5UzMlx/yVhItspPT96D1Uc4tzY1x7fUfma8iLag==
+"@reachu/sdk@^1.0.71-prerelease.17":
+  version "1.0.71-prerelease.17"
+  resolved "https://registry.npmjs.org/@reachu/sdk/-/sdk-1.0.71-prerelease.17.tgz"
+  integrity sha512-lUszqBBBbDTtWRPgIhxzsQQIIqvCq2HKGQU9o7J+dAnF0XO+BOCpea5Cznq8EROJHUIjkoo5htZ2kzAoTKBGEA==
   dependencies:
     "@apollo/client" "^3.9.11"
     axios "0.27.2"
