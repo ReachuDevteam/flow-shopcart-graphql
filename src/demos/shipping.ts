@@ -731,6 +731,7 @@ const createCheckout = async (
 };
 
 const shippingCartDemo = async () => {
+  console.log('Shipping Cart Demo');
   // API key and base URL for the ReachU GraphQL API
   const apiKey = 'B72QBGP-B0DM8TV-KPCG6VK-WA5NF4E';
   const baseUrl = 'https://graph-ql.reachu.io';
@@ -810,7 +811,7 @@ const shippingCartDemo = async () => {
 
   // Map the selected products into line items for adding to the cart
   const lineItems = productsBySupplier.map((product) => ({
-    quantity: product.quantity, // Quantity of each product to be added to the cart
+    quantity: 1, // Quantity of each product to be added to the cart
     product_id: product.id, // The unique ID of each product
   }));
 
@@ -856,6 +857,10 @@ const shippingCartDemo = async () => {
   // Finally, create a checkout session for the cart
   // This step prepares the cart for payment and completes the shopping flow
   await createCheckout(apolloClient, { cart_id: cart.cart_id });
+
+  console.log('Demo completed successfully!');
+
+  return;
 };
 
 export default shippingCartDemo;
