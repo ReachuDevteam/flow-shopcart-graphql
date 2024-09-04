@@ -13,7 +13,8 @@
     "demo-discount": "cross-env DEMO_ENV='DISCOUNT' nodemon",
     "demo-shopcart": "cross-env DEMO_ENV='SHOPCART' nodemon",
     "demo-shopcart-klarna": "cross-env DEMO_ENV='SHOPCART' DEMO_PAYMENT='KLARNA' nodemon",
-    "demo-shopcart-stripe": "cross-env DEMO_ENV='SHOPCART' DEMO_PAYMENT='STRIPE' nodemon"
+    "demo-shopcart-stripe": "cross-env DEMO_ENV='SHOPCART' DEMO_PAYMENT='STRIPE' nodemon",
+    "demo-shopcart-shipping": "cross-env DEMO_ENV='SHIPPING' nodemon"
   },
   "keywords": [],
   "author": "",
